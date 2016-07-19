@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://twitter.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://twitter.com" xmlns:intf="http://twitter.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://twitter.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="mylogin">
+    <complexType>
+     <sequence>
+      <element name="username" type="xsd:string"/>
+      <element name="password" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="myloginResponse">
+    <complexType>
+     <sequence>
+      <element name="myloginReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="myloginResponse">
+
+      <wsdl:part element="impl:myloginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="myloginRequest">
+
+      <wsdl:part element="impl:mylogin" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="login">
+
+      <wsdl:operation name="mylogin">
+
+         <wsdl:input message="impl:myloginRequest" name="myloginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:myloginResponse" name="myloginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="loginSoapBinding" type="impl:login">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="mylogin">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="myloginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="myloginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="loginService">
+
+      <wsdl:port binding="impl:loginSoapBinding" name="login">
+
+         <wsdlsoap:address location="http://localhost:8080/TwitterSOAPServer/services/login"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

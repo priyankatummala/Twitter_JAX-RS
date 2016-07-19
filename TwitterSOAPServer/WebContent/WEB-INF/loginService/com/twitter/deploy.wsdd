@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from loginService WSDL service -->
+
+  <service name="login" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://twitter.com"/>
+      <parameter name="wsdlServiceElement" value="loginService"/>
+      <parameter name="schemaQualified" value="http://twitter.com"/>
+      <parameter name="wsdlServicePort" value="login"/>
+      <parameter name="className" value="com.twitter.login"/>
+      <parameter name="wsdlPortType" value="login"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://twitter.com" xmlns:retNS="http://twitter.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="mylogin" qname="operNS:mylogin" returnQName="retNS:myloginReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://twitter.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:username" type="tns:string"/>
+        <parameter xmlns:pns="http://twitter.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:password" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="mylogin"/>
+
+  </service>
+</deployment>

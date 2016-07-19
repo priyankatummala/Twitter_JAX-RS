@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://twitter.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://twitter.com" xmlns:intf="http://twitter.com" xmlns:tns1="http://sql.java" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://twitter.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://sql.java"/>
+   <element name="main">
+    <complexType>
+     <sequence>
+      <element maxOccurs="unbounded" name="args" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="mainResponse">
+    <complexType/>
+   </element>
+   <element name="returnConnectionToPool">
+    <complexType>
+     <sequence>
+      <element name="connection" type="xsd:anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="returnConnectionToPoolResponse">
+    <complexType/>
+   </element>
+   <element name="getConnectionFromPool">
+    <complexType/>
+   </element>
+   <element name="getConnectionFromPoolResponse">
+    <complexType>
+     <sequence>
+      <element name="getConnectionFromPoolReturn" type="tns1:Connection"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="mainResponse">
+
+      <wsdl:part element="impl:mainResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="returnConnectionToPoolResponse">
+
+      <wsdl:part element="impl:returnConnectionToPoolResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="returnConnectionToPoolRequest">
+
+      <wsdl:part element="impl:returnConnectionToPool" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getConnectionFromPoolResponse">
+
+      <wsdl:part element="impl:getConnectionFromPoolResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getConnectionFromPoolRequest">
+
+      <wsdl:part element="impl:getConnectionFromPool" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="mainRequest">
+
+      <wsdl:part element="impl:main" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ConnectionPoolManager">
+
+      <wsdl:operation name="main">
+
+         <wsdl:input message="impl:mainRequest" name="mainRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:mainResponse" name="mainResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="returnConnectionToPool">
+
+         <wsdl:input message="impl:returnConnectionToPoolRequest" name="returnConnectionToPoolRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:returnConnectionToPoolResponse" name="returnConnectionToPoolResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getConnectionFromPool">
+
+         <wsdl:input message="impl:getConnectionFromPoolRequest" name="getConnectionFromPoolRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getConnectionFromPoolResponse" name="getConnectionFromPoolResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ConnectionPoolManagerSoapBinding" type="impl:ConnectionPoolManager">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="main">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="mainRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="mainResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="returnConnectionToPool">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="returnConnectionToPoolRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="returnConnectionToPoolResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getConnectionFromPool">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getConnectionFromPoolRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getConnectionFromPoolResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ConnectionPoolManagerService">
+
+      <wsdl:port binding="impl:ConnectionPoolManagerSoapBinding" name="ConnectionPoolManager">
+
+         <wsdlsoap:address location="http://localhost:8080/TwitterSOAPServer/services/ConnectionPoolManager"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

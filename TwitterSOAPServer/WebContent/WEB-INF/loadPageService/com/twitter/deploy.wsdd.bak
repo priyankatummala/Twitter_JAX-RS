@@ -1,0 +1,72 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from loadPageService WSDL service -->
+
+  <service name="loadPage" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://twitter.com"/>
+      <parameter name="wsdlServiceElement" value="loadPageService"/>
+      <parameter name="schemaQualified" value="http://twitter.com"/>
+      <parameter name="wsdlServicePort" value="loadPage"/>
+      <parameter name="className" value="com.twitter.LoadPageSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="loadPage"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="fetchMyTweets" qname="operNS:fetchMyTweets" xmlns:operNS="http://twitter.com" returnQName="retNS:fetchMyTweetsReturn" xmlns:retNS="http://twitter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="loadpageProfile" qname="operNS:loadpageProfile" xmlns:operNS="http://twitter.com" returnQName="retNS:loadpageProfileReturn" xmlns:retNS="http://twitter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchsuggestions" qname="operNS:fetchsuggestions" xmlns:operNS="http://twitter.com" returnQName="retNS:fetchsuggestionsReturn" xmlns:retNS="http://twitter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchFollowing" qname="operNS:fetchFollowing" xmlns:operNS="http://twitter.com" returnQName="retNS:fetchFollowingReturn" xmlns:retNS="http://twitter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchFollowers" qname="operNS:fetchFollowers" xmlns:operNS="http://twitter.com" returnQName="retNS:fetchFollowersReturn" xmlns:retNS="http://twitter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="updateInfo" qname="operNS:updateInfo" xmlns:operNS="http://twitter.com" returnQName="retNS:updateInfoReturn" xmlns:retNS="http://twitter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:bday" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:loc" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:phone" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="searchResults" qname="operNS:searchResults" xmlns:operNS="http://twitter.com" returnQName="retNS:searchResultsReturn" xmlns:retNS="http://twitter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:searchTerm" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="registerTweet" qname="operNS:registerTweet" xmlns:operNS="http://twitter.com" returnQName="retNS:registerTweetReturn" xmlns:retNS="http://twitter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:tweet" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="reTweet" qname="operNS:reTweet" xmlns:operNS="http://twitter.com" returnQName="retNS:reTweetReturn" xmlns:retNS="http://twitter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:tweet" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="followuser" qname="operNS:followuser" xmlns:operNS="http://twitter.com" returnQName="retNS:followuserReturn" xmlns:retNS="http://twitter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:curUser" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:thandle" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="signup" qname="operNS:signup" xmlns:operNS="http://twitter.com" returnQName="retNS:signupReturn" xmlns:retNS="http://twitter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:password" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:fname" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:lname" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:handle" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="fetchTweets" qname="operNS:fetchTweets" xmlns:operNS="http://twitter.com" returnQName="retNS:fetchTweetsReturn" xmlns:retNS="http://twitter.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:username" xmlns:pns="http://twitter.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="loadpageProfile searchResults fetchFollowers fetchFollowing fetchsuggestions fetchTweets registerTweet reTweet fetchMyTweets signup followuser updateInfo"/>
+
+  </service>
+</deployment>

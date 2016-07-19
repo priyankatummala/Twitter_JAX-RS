@@ -1,0 +1,133 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="E:\CMPE273_Test\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\TwitterSOAPServer\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="dbConnection" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="config" qname="ns1:config" returnQName="ns1:configReturn" returnType="xsd:anyType" soapAction="" xmlns:ns1="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
+  <ns1:parameter name="allowedMethods" value="config"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="dbConnection"/>
+  <ns1:parameter name="className" value="com.twitter.dbConnection"/>
+  <ns1:parameter name="wsdlServicePort" value="dbConnection"/>
+  <ns1:parameter name="schemaQualified" value="http://twitter.com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://twitter.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="dbConnectionService"/>
+ </ns1:service>
+ <ns1:service name="loadPage" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="fetchMyTweets" qname="ns2:fetchMyTweets" returnQName="ns2:fetchMyTweetsReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:username" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="loadpageProfile" qname="ns3:loadpageProfile" returnQName="ns3:loadpageProfileReturn" returnType="xsd:string" soapAction="" xmlns:ns3="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:username" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="fetchsuggestions" qname="ns4:fetchsuggestions" returnQName="ns4:fetchsuggestionsReturn" returnType="xsd:string" soapAction="" xmlns:ns4="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:username" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="fetchFollowing" qname="ns5:fetchFollowing" returnQName="ns5:fetchFollowingReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:username" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="fetchFollowers" qname="ns6:fetchFollowers" returnQName="ns6:fetchFollowersReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns6:username" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="updateInfo" qname="ns7:updateInfo" returnQName="ns7:updateInfoReturn" returnType="xsd:string" soapAction="" xmlns:ns7="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:username" type="xsd:string"/>
+   <ns1:parameter qname="ns7:bday" type="xsd:string"/>
+   <ns1:parameter qname="ns7:loc" type="xsd:string"/>
+   <ns1:parameter qname="ns7:phone" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="searchResults" qname="ns8:searchResults" returnQName="ns8:searchResultsReturn" returnType="xsd:string" soapAction="" xmlns:ns8="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:searchTerm" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="registerTweet" qname="ns9:registerTweet" returnQName="ns9:registerTweetReturn" returnType="xsd:string" soapAction="" xmlns:ns9="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns9:username" type="xsd:string"/>
+   <ns1:parameter qname="ns9:tweet" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="reTweet" qname="ns10:reTweet" returnQName="ns10:reTweetReturn" returnType="xsd:string" soapAction="" xmlns:ns10="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:username" type="xsd:string"/>
+   <ns1:parameter qname="ns10:tweet" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="followuser" qname="ns11:followuser" returnQName="ns11:followuserReturn" returnType="xsd:string" soapAction="" xmlns:ns11="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:curUser" type="xsd:string"/>
+   <ns1:parameter qname="ns11:thandle" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="signup" qname="ns12:signup" returnQName="ns12:signupReturn" returnType="xsd:string" soapAction="" xmlns:ns12="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns12:username" type="xsd:string"/>
+   <ns1:parameter qname="ns12:password" type="xsd:string"/>
+   <ns1:parameter qname="ns12:fname" type="xsd:string"/>
+   <ns1:parameter qname="ns12:lname" type="xsd:string"/>
+   <ns1:parameter qname="ns12:handle" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:operation name="fetchTweets" qname="ns13:fetchTweets" returnQName="ns13:fetchTweetsReturn" returnType="xsd:string" soapAction="" xmlns:ns13="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns13:username" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="loadpageProfile searchResults fetchFollowers fetchFollowing fetchsuggestions fetchTweets registerTweet reTweet fetchMyTweets signup followuser updateInfo"/>
+  <ns1:parameter name="wsdlPortType" value="loadPage"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://twitter.com"/>
+  <ns1:parameter name="wsdlServicePort" value="loadPage"/>
+  <ns1:parameter name="className" value="com.twitter.loadPage"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://twitter.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="loadPageService"/>
+ </ns1:service>
+ <ns1:service name="login" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="mylogin" qname="ns14:mylogin" returnQName="ns14:myloginReturn" returnType="xsd:string" soapAction="" xmlns:ns14="http://twitter.com" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns14:username" type="xsd:string"/>
+   <ns1:parameter qname="ns14:password" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="mylogin"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="login"/>
+  <ns1:parameter name="className" value="com.twitter.login"/>
+  <ns1:parameter name="wsdlServicePort" value="login"/>
+  <ns1:parameter name="schemaQualified" value="http://twitter.com"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://twitter.com"/>
+  <ns1:parameter name="wsdlServiceElement" value="loginService"/>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+   <ns1:handler type="java:org.apache.axis.handlers.http.HTTPAuthHandler"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs:list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs:wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs:method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+ <ns1:transport name="local">
+  <ns1:responseFlow>
+   <ns1:handler type="LocalResponder"/>
+  </ns1:responseFlow>
+ </ns1:transport>
+</ns1:deployment>
